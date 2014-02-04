@@ -17,7 +17,10 @@ dependancies
  * argyll 
    (essential to drive the colorimeter and calculate the icc profile)
 
- * xiccd 
+ * colord
+   (as an infrastructure backend for color management)
+
+ * xiccd
    (or gnome-settings-daemon or kde's respective equivalent)
 
  * xfce4-terminal
