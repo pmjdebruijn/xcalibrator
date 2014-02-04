@@ -1,2 +1,25 @@
 xcalibrator
 ===========
+
+xcalibrator is a simple frontend shell script, which uses the argyll tools 
+to calibrate and profile your display using a colorimeter.
+
+this project should be construed as a fully fledged project in it's own 
+right but rather as an example on how to write similar scripts for your 
+own personal use.
+
+dependancies
+============
+
+ * bash 
+   (the main script is written in bourne again shell code)
+
+ * argyll 
+   (essential to drive the colorimeter and calculate the icc profile)
+
+ * xiccd 
+   (or gnome-settings-daemon or kde's respective equivalent)
+
+ * xfce4-terminal
+   (if you wish to use the .desktop file)
+
