@@ -4,7 +4,7 @@ xcalibrator
 xcalibrator is a simple frontend shell script, which uses the argyll tools 
 to calibrate and profile your display using a colorimeter.
 
-this project should be construed as a fully fledged project in it's own 
+this project should NOT be construed as a fully fledged project in it's own 
 right but rather as an example on how to write similar scripts for your 
 own personal use.
 
