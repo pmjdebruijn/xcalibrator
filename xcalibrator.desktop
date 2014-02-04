@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=X Calibrator
+Comment=Calibrate your display
+Exec=xfce4-terminal --fullscreen --title="X Calibrator" --command=xcalibrator --working-directory /tmp
+Icon=video-display
+Terminal=false
+Type=Application
+Categories=GTK;System;
+StartupNotify=true

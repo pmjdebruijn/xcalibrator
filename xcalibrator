@@ -1,0 +1,69 @@
+#!/bin/bash
+#
+# Copyright (c) 2014 Pascal de Bruijn <pmjdebruijn@pcode.nl>
+#
+
+CCXX=""
+
+DISPLAY_TYPE=l
+WHITE_POINT=6500
+GAMMA_CURVE=2.2
+TEST_WINDOW=0.5,0.5,1.2,1.2
+
+TARGET_PATCHES=/usr/share/xcalibrator/medium.ti1
+
+ICC_DESCRIPTION="$(colormgr get-devices-by-kind display | grep '^Model:' | head -n 1 | sed 's#: *#:#' | awk -F ':' '{print $2}')"
+ICC_COPYRIGHT="Copyright (c) $(date +%Y) $(getent passwd $USER | awk -F ':' '{print $5}' | awk -F ',' '{print $1}'). Some rights reserved."
+
+DISPCAL_OPTS="-q l -m -H"
+DISPREAD_OPTS="-H -N -Y p"
+COLPROF_OPTS="-q h -a G -Z p -n c"
+
+if [[ -f ${HOME}/.xcalibratorrc ]]; then
+  source ${HOME}/.xcalibratorrc
+fi
+
+FILE_NAME="$(echo ${ICC_DESCRIPTION} | tr -cd 'A-Za-z0-9')_$(date +%Y%m%d%H%M)"
+
+TEMP_DIR=$(mktemp -d -t xcal.XXXXXXXX)
+
+echo -e "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+
+echo "Attach the instrument to the computer"
+echo "Press CTRL+C to quit or ENTER to continue"
+read -s
+
+echo ""
+echo "Place the instrument on the test window"
+echo "Press Esc or Q to quit or any other key to continue"
+dispcal ${CCXX} ${DISPCAL_OPTS} -y ${DISPLAY_TYPE} -P ${TEST_WINDOW} -t ${WHITE_POINT} -g ${GAMMA_CURVE} ${TEMP_DIR}/${FILE_NAME} >/dev/null
+if [[ $? -eq 0 ]]; then
+  #targen -v -d3 -G -e 5 -B 5 -s 10 -g 10 -f 100 ${TEMP_DIR}/${FILE_NAME}
+  cp ${TARGET_PATCHES} ${TEMP_DIR}/${FILE_NAME}.ti1
+
+  dispread ${CCXX} ${DISPREAD_OPTS} -y ${DISPLAY_TYPE} -P ${TEST_WINDOW} -k ${TEMP_DIR}/${FILE_NAME}.cal ${TEMP_DIR}/${FILE_NAME} >/dev/null
+  if [[ $? -eq 0 ]]; then
+
+    colprof -D "${ICC_DESCRIPTION}" -C "${ICC_COPYRIGHT}" ${COLPROF_OPTS} ${TEMP_DIR}/${FILE_NAME}
+    if [[ $? -eq 0 ]]; then
+      mkdir -p ${HOME}/.local/share/icc
+      cp ${TEMP_DIR}/${FILE_NAME}.icc ${HOME}/.local/share/icc
+
+      echo ""
+      echo "Activating profile"
+      sleep 3
+      LANG=C colormgr device-add-profile $(LANG=C colormgr get-devices-by-kind display | grep -i '^Object Path:' | head -n 1 | sed 's#: *#:#' | awk -F ':' '{print $2}') $(LANG=C colormgr find-profile-by-filename ${HOME}/.local/share/icc/${FILE_NAME}.icc | grep -i '^Object Path:' | head -n 1 | sed 's#: *#:#' | awk -F ':' '{print $2}')
+    fi
+  fi
+fi
+
+echo ""
+echo "The instrument may be removed from the screen"
+echo "Press ENTER to close the window"
+read -s
+
+rm ${TEMP_DIR}/${FILE_NAME}.cal
+rm ${TEMP_DIR}/${FILE_NAME}.ti1
+rm ${TEMP_DIR}/${FILE_NAME}.ti3
+rm ${TEMP_DIR}/${FILE_NAME}.icc
+rmdir ${TEMP_DIR}
