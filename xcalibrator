@@ -29,6 +29,14 @@ TEMP_DIR=$(mktemp -d -t xcal.XXXXXXXX)
 
 echo -e "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
 
+if [[ -f ${CCXX} ]]; then
+  CCXX="-X ${CCXX}"
+else
+  echo "WARNING: ${CCXX} not found, ignoring!"
+  CCXX=""
+fi
+
+echo ""
 echo "Attach the instrument to the computer"
 echo "Press CTRL+C to quit or ENTER to continue"
 read -s
