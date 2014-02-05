@@ -27,6 +27,15 @@ FILE_NAME="$(echo ${ICC_DESCRIPTION} | tr -cd 'A-Za-z0-9')_$(date +%Y%m%d%H%M)"
 
 TEMP_DIR=$(mktemp -d -t xcal.XXXXXXXX)
 
+function exit_trap {
+  rm ${TEMP_DIR}/${FILE_NAME}.cal 2>/dev/null
+  rm ${TEMP_DIR}/${FILE_NAME}.ti1 2>/dev/null
+  rm ${TEMP_DIR}/${FILE_NAME}.ti3 2>/dev/null
+  rm ${TEMP_DIR}/${FILE_NAME}.icc 2>/dev/null
+  rmdir ${TEMP_DIR}               2>/dev/null
+}
+trap exit_trap EXIT
+
 echo -e "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
 
 if [[ -f ${CCXX} ]]; then
@@ -69,9 +78,3 @@ echo ""
 echo "The instrument may be removed from the screen"
 echo "Press ENTER to close the window"
 read -s
-
-rm ${TEMP_DIR}/${FILE_NAME}.cal
-rm ${TEMP_DIR}/${FILE_NAME}.ti1
-rm ${TEMP_DIR}/${FILE_NAME}.ti3
-rm ${TEMP_DIR}/${FILE_NAME}.icc
-rmdir ${TEMP_DIR}
