@@ -38,11 +38,13 @@ trap exit_trap EXIT
 
 echo -e "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
 
-if [[ -f ${CCXX} ]]; then
+if [[ -f "${CCXX}" ]]; then
   CCXX="-X ${CCXX}"
 else
-  echo "WARNING: ${CCXX} not found, ignoring!"
-  CCXX=""
+  if [[ -n "${CCXX}" ]]; then
+    echo "WARNING: ${CCXX} not found, ignoring!"
+    CCXX=""
+  fi
 fi
 
 echo ""
