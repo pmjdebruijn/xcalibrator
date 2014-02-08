@@ -12,6 +12,4 @@ uninstall:
 	rm    ${DESTDIR}${PREFIX}/share/xcalibrator/medium.ti1
 	rmdir ${DESTDIR}${PREFIX}/share/xcalibrator
 	rm    ${DESTDIR}${PREFIX}/bin/xcalibrator
-	rmdir ${DESTDIR}${PREFIX}/bin
 	rm    ${DESTDIR}${PREFIX}/share/applications/xcalibrator.desktop
-	rmdir ${DESTDIR}${PREFIX}/share/applications
