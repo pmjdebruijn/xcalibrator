@@ -1,0 +1,19 @@
+This work was packaged for Debian by:
+
+    Pascal de Bruijn <pmjdebruijn@pcode.nl> on Wed, 12 Feb 2014 21:37:33 +0100
+
+It was downloaded from:
+
+    https://github.com/pmjdebruijn/xcalibrator
+
+Upstream Author(s):
+
+    Pascal de Bruijn
+
+Files: *
+Copyright: © 2014 Pascal de Bruijn <pmjdebruijn@pcode.nl>
+License: MIT
+
+Files: debian/*
+Copyright: © 2014 Pascal de Bruijn <pmjdebruijn@pcode.nl>
+License: MIT

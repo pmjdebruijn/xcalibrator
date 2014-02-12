@@ -1,0 +1,18 @@
+Source: xcalibrator
+Section: graphics
+Priority: optional
+Maintainer: Pascal de Bruijn <pmjdebruijn@pcode.nl>
+Build-Depends: debhelper, make
+Standards-Version: 3.9.3
+Homepage: https://github.com/pmjdebruijn/xcalibrator
+
+Package: xcalibrator
+Architecture: any
+Depends: bash, argyll, colord, xiccd | gnome-settings-daemon, xfce4-terminal
+Description: xcalibrator
+ xcalibrator is a simple frontend shell script, which uses the argyll tools 
+ to calibrate and profile your display using a colorimeter.
+ .
+ this project should NOT be construed as a fully fledged project in it's own 
+ right but rather as an example on how to write similar scripts for your 
+ own personal use.
