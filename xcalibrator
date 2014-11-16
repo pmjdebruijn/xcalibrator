@@ -57,7 +57,7 @@ echo "Place the instrument on the test window"
 echo "Press Esc or Q to quit or any other key to continue"
 dispcal ${CCXX} ${DISPCAL_OPTS} -y ${DISPLAY_TYPE} -P ${TEST_WINDOW} -t ${WHITE_POINT} -g ${GAMMA_CURVE} ${TEMP_DIR}/${FILE_NAME} >/dev/null
 if [[ $? -eq 0 ]]; then
-  #targen -v -d3 -G -e 5 -B 5 -s 10 -g 10 -f 100 ${TEMP_DIR}/${FILE_NAME}
+  #targen -v -d3 -G -f 128 ${TEMP_DIR}/${FILE_NAME}
   cp ${TARGET_PATCHES} ${TEMP_DIR}/${FILE_NAME}.ti1
 
   dispread ${CCXX} ${DISPREAD_OPTS} -y ${DISPLAY_TYPE} -P ${TEST_WINDOW} -k ${TEMP_DIR}/${FILE_NAME}.cal ${TEMP_DIR}/${FILE_NAME} >/dev/null
