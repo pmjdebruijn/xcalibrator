@@ -17,7 +17,7 @@ ICC_COPYRIGHT="Copyright $(date +%Y) $(getent passwd $USER | awk -F ':' '{print 
 
 DISPCAL_OPTS="-q l -m -H"
 DISPREAD_OPTS="-H -N -Y p"
-COLPROF_OPTS="-q h -a G -Z p -n c"
+COLPROF_OPTS="-q m -a G -Z p -n c"
 
 if [[ -f ${HOME}/.xcalibratorrc ]]; then
   source ${HOME}/.xcalibratorrc
