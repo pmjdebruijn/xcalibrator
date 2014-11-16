@@ -1,3 +1,9 @@
+xcalibrator (0.2) testing; urgency=low
+
+  * New upstream pre-release.
+
+ -- Pascal de Bruijn <pmjdebruijn@pcode.nl>  Sun, 16 Nov 2014 17:46:30 +0100
+
 xcalibrator (0.1) testing; urgency=low
 
   * Initial Packaging.
