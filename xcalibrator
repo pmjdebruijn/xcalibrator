@@ -13,7 +13,7 @@ TEST_WINDOW=0.5,0.5,1.0,1.5
 TARGET_PATCHES=/usr/share/xcalibrator/medium.ti1
 
 ICC_DESCRIPTION="$(LANG=C colormgr get-devices-by-kind display | grep '^Model:' | head -n 1 | sed 's#: *#:#' | awk -F ':' '{print $2}')"
-ICC_COPYRIGHT="Copyright (c) $(date +%Y) $(getent passwd $USER | awk -F ':' '{print $5}' | awk -F ',' '{print $1}'). Some rights reserved."
+ICC_COPYRIGHT="Copyright $(date +%Y) $(getent passwd $USER | awk -F ':' '{print $5}' | awk -F ',' '{print $1}')"
 
 DISPCAL_OPTS="-q l -m -H"
 DISPREAD_OPTS="-H -N -Y p"
