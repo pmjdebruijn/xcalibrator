@@ -2,7 +2,7 @@
 Version=1.0
 Name=X Calibrator
 Comment=Calibrate your display
-Exec=xfce4-terminal --fullscreen --title="X Calibrator" --command=xcalibrator --working-directory /tmp
+Exec=xfce4-terminal --fullscreen --hide-menubar --title="X Calibrator" --command=xcalibrator --working-directory /tmp
 Icon=video-display
 Terminal=false
 Type=Application
